@@ -1,5 +1,7 @@
 import app from "./src/app";
+import { Env } from "./src/config/config";
 
-app.listen(3000, () => {
+const PORT = Env.Port
+app.listen(PORT, () => {
   console.log("Server is running");
 });
