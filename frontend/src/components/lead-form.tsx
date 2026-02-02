@@ -2,9 +2,11 @@
 
 import { createLead, CreateLeadRequest } from "@/services/api";
 import { LeadFormSchema } from "@/validator/form-validator";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LeadForm() {
+  const router = useRouter();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [website, setWebsite] = useState<string>("");
@@ -32,16 +34,15 @@ export default function LeadForm() {
 
       alert(response.message)
       setLoading(false)
+      router.push("/dashboard")
     } catch (error: any) {
         setError(error.message)
         setLoading(false)
     }
   };
   return (
-    <div className="">
-      <h1 className="font-bold">Lead Form</h1>
-
-      <form className="mt-4 flex flex-col gap-2 w-full" onSubmit={handleSubmit}>
+    <div className="w-full items-center flex justify-center">
+      <form className="flex flex-col gap-2 w-[80%]" onSubmit={handleSubmit}>
         <p className="text-red-500 text-xs">{error}</p>
         <input
           type="text"

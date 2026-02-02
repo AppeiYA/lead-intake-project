@@ -27,12 +27,8 @@ export async function LeadPostService(payload: {name: string, email: string, web
     return finalLead;
 }
 
-export async function GetLead(email: string) {
-    const exists = LeadsData.find(lead => lead.email == email)
-    if (!exists) {
-        return new Error("Lead doesn't exist")
-    }
-    return exists
+export async function GetLeads() {
+    return LeadsData
 }
 
 const ComputeScore = (hasWebsite: boolean = false, companySize: number, country: string, hasEnrichmentData: boolean = false): number => {

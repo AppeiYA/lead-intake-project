@@ -11,6 +11,11 @@ interface LeadResponse {
     data: Lead
 }
 
+export interface FetchLeadResponse {
+  message: string;
+  data: Lead[]
+}
+
 export const createLead = async (data: CreateLeadRequest): Promise<LeadResponse> => {
   const res = await fetch("/api/leads", {
     method: "POST",
@@ -26,7 +31,7 @@ export const createLead = async (data: CreateLeadRequest): Promise<LeadResponse>
   return res.json()
 };
 
-export const fetchLeads = async (): Promise<LeadResponse>=>{
+export const fetchLeads = async (): Promise<FetchLeadResponse>=>{
     const res = await fetch('/api/leads', {
         method: "GET",
         headers: {"content-type": "application/json"}

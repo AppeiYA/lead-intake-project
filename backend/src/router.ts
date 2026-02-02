@@ -1,9 +1,9 @@
 import express from 'express'
-import qualifyLead, { getLead } from './controllers/leads.controller';
+import qualifyLead, { getLeads } from './controllers/leads.controller';
 
 const appRouter = express.Router()
 
 appRouter.post("/leads", qualifyLead)
-appRouter.get("/Leads/:email", getLead)
+appRouter.get("/Leads", getLeads)
 
 export default appRouter;

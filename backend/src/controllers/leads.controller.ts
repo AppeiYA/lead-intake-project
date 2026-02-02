@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Joi from 'joi';
-import { GetLeadSchema, LeadPostSchema } from '../validators/leads.post.schema';
-import { GetLead, LeadPostService } from '../services/lead.post.service';
+import { LeadPostSchema } from '../validators/leads.post.schema';
+import { GetLeads, LeadPostService } from '../services/lead.post.service';
 
 const qualifyLead = async (req: Request, res: Response) => {
     const { value, error } = LeadPostSchema.validate(req.body);
@@ -26,16 +26,9 @@ const qualifyLead = async (req: Request, res: Response) => {
     })
 }
 
-export const getLead = async (req:Request, res:Response) => {
-    const {error, value} = GetLeadSchema.validate(req.params)
-    if (error) {
-        res.status(422).json({
-            "error": error?.details[0]?.message
-        });
-        return;
-    }
+export const getLeads = async (req:Request, res:Response) => {
 
-    const response = await GetLead(value?.email)
+    const response = await GetLeads()
 
     if (response instanceof Error) {
         return res.status(500).json({
@@ -45,7 +38,7 @@ export const getLead = async (req:Request, res:Response) => {
 
 
     return res.status(200).json({
-        message: "Lead fetched successfully",
+        message: "Leads fetched successfully",
         data: response
     })
 }
