@@ -4,6 +4,7 @@ import { createLead, CreateLeadRequest } from "@/services/api";
 import { LeadFormSchema } from "@/validator/form-validator";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function LeadForm() {
   const router = useRouter();
@@ -26,17 +27,19 @@ export default function LeadForm() {
       const check = LeadFormSchema.safeParse(formData);
       if (!check.success){
         setError(`${check.error.issues[0].message}`)
+        toast.error(`${check.error.issues[0].message}`);
         setLoading(false)
         return
       }
 
       const response = await createLead(formData);
 
-      alert(response.message)
+      toast.success(response.message)
       setLoading(false)
       router.push("/dashboard")
     } catch (error: any) {
         setError(error.message)
+        toast.error(error.message)
         setLoading(false)
     }
   };

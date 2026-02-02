@@ -2,7 +2,6 @@ import { Env } from "./config/config";
 import express from "express";
 import cors from "cors"
 import appRouter from "./router";
-
 const app = express()
 
 app.use(cors())

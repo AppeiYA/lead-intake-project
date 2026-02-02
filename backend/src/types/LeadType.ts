@@ -1,14 +1,31 @@
 export interface LeadType {
-    name: string;
-    email: string;
-    website?: string;
-    enrichmentData?: EnrichmentData;
-    score: number;
+  id: number;
+  name: string;
+  email: string;
+  website?: string;
+  score: number;
+  status: "qualified" | "unqualified";
+}
+
+
+export interface GetLeadResponse {
+  id: number;
+  name: string;
+  email: string;
+  website?: string;
+  score: number;
+  status: "qualified" | "unqualified";
+  companyName?: string;
+  companySize?: number | null;
+  industry?: string | null;
+  country?: string;
 }
 
 export interface EnrichmentData {
-    companyName?: string | null
-    companySize?: number | null
-    industry?: string | null
-    country?: string | null
+  id?: number;
+  leadId?: number;
+  companyName?: string ;
+  companySize?: number | null;
+  industry?: string | null;
+  country?: string;
 }

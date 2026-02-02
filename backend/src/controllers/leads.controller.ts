@@ -4,6 +4,11 @@ import { LeadPostSchema } from '../validators/leads.post.schema';
 import { GetLeads, LeadPostService } from '../services/lead.post.service';
 
 const qualifyLead = async (req: Request, res: Response) => {
+    if(!req.body){
+        res.status(400).json({
+            message: "no body in request"
+        })
+    }
     const { value, error } = LeadPostSchema.validate(req.body);
     if (error) {
         res.status(422).json({

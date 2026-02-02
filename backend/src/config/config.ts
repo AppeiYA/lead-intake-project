@@ -22,7 +22,7 @@ function getEnv(variable: string, fallback:string): string {
 }
 
 export const Env = {
-    Port: getEnv("PORT", "3000"),
+    Port: getEnv("PORT", "4000"),
     AnyMailApiKey: requireEnv("ANYMAIL_API_KEY"),
     AnyMailApiUrl: requireEnv("ANYMAIL_API_URL")
 }
